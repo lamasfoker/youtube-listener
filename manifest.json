@@ -27,12 +27,12 @@
       "type": "image/png"
     }],
   "lang": "en-US",
-  "start_url": "/index.html",
+  "start_url": "/youtubelistener/index.html",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white",
   "share_target": {
-    "action": "/index.html",
+    "action": "/youtubelistener/index.html",
     "params": {
       "text": "text"
     }
