@@ -9,10 +9,10 @@ window.onload = async () => {
             videoId,
             audioStreams = {};
 
-        if (!url.searchParams.get('url')) {
+        if (!url.searchParams.get('text')) {
             return;
         }
-        youtubeUrl = new URL(url.searchParams.get('url'));
+        youtubeUrl = new URL(url.searchParams.get('text'));
         videoId = youtubeUrl.pathname.substr(1);
 
         let apiUrl = "https://" + videoId + "-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=https%3A%2F%2Fwww.youtube.com%2Fget_video_info%3Fvideo_id%3D" + videoId;
