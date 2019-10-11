@@ -22,34 +22,45 @@ window.onload = async () => {
         });
 
         if (response.ok) {
-            response.text().then(data => {
+            let body = await response.text(),
+                dataArray = parse_str(body),
+                videoDetails = JSON.parse(dataArray.player_response).videoDetails,
+                videoTitle = videoDetails.title,
+                videoAuthor = videoDetails.author,
+                videoThumbnails = videoDetails.thumbnail.thumbnails;
+            if (!dataArray.hasOwnProperty("url_encoded_fmt_stream_map") || !dataArray.hasOwnProperty("adaptive_fmts")) {
+                console.log('I can\'t play song video or other property one');
+                return;
+            }
+            let streams = (dataArray.url_encoded_fmt_stream_map + ',' + dataArray.adaptive_fmts).split(',');
+            let streamObject = {},
+                quality = false,
+                stream;
+            for (stream of streams) {
+                streamObject = parse_str(stream);
+                switch (streamObject.itag) {
+                    case "139":
+                        quality = "48kbps";
+                        break;
+                    case "140":
+                        quality = "128kbps";
+                        break;
+                    case "141":
+                        quality = "256kbps";
+                        break;
+                }
+                if (quality) {
+                    audioStreams[quality] = streamObject.url;
+                }
+            }
+            audioTag.src = audioStreams['128kbps'];
 
-                data = parse_str(data);
-                let streams = (data.url_encoded_fmt_stream_map + ',' + data.adaptive_fmts).split(',');
+            const isMobile = navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
 
-                streams.forEach(function (s, n) {
-                    let stream = parse_str(s),
-                        itag = stream.itag * 1,
-                        quality = false;
-                    switch (itag) {
-                        case 139:
-                            quality = "48kbps";
-                            break;
-                        case 140:
-                            quality = "128kbps";
-                            break;
-                        case 141:
-                            quality = "256kbps";
-                            break;
-                    }
-                    if (quality) {
-                        audioStreams[quality] = stream.url;
-                    }
-                });
-
-                audioTag.src = audioStreams['128kbps'];
-                audioTag.play();
-            })
+            function play() {
+                audioTag.play()
+            }
+            document.body.addEventListener(isMobile ? "touchend" : "click", play, {once: true});
         }
 
         function parse_str(str) {
