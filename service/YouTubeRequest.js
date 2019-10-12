@@ -1,3 +1,5 @@
+"use strict";
+
 const YouTubeRequest = {
     getBody: async () => {
         let videoId = YouTubeRequest.getVideoId(),

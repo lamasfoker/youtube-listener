@@ -1,7 +1,9 @@
+"use strict";
+
 import StringParser from "./StringParser.js";
 
 const AudioExtractor = {
-    extract : (string) => {
+    extract: (string) => {
         let data = StringParser.parse(string),
             videoDetails = JSON.parse(data.player_response).videoDetails;
         return {
@@ -43,8 +45,8 @@ const AudioExtractor = {
     }
 
     , getBiggerThumbnailUrl: (thumbnails) => {
-       let thumbnail = Math.max.apply(Math, thumbnails.map(thumbnail => thumbnail.height));
-       return thumbnail.url;
+        let thumbnail = Math.max.apply(Math, thumbnails.map(thumbnail => thumbnail.height));
+        return thumbnail.url;
     }
 };
 

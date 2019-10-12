@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const title = document.querySelector(".title");
 
     let body = await YouTubeRequest.getBody();
-    let audio =  AudioExtractor.extract(body);
+    let audio = AudioExtractor.extract(body);
 
     audioTag.src = audio.streams["128kbps"];
     title.innerHTML = audio.title;

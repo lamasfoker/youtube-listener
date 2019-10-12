@@ -1,3 +1,5 @@
+"use strict";
+
 const CompatibilityChecker = {
     check: () => {
         if (!('serviceWorker' in navigator)) {

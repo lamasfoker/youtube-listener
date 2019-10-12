@@ -1,3 +1,5 @@
+"use strict";
+
 const StringParser = {
     parse: (string) => {
         return string.split("&").reduce(function (params, param) {
