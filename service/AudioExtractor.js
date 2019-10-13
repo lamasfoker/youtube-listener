@@ -10,7 +10,9 @@ const AudioExtractor = {
             streams: AudioExtractor.getStreams(data),
             title: videoDetails.title.replace(/\+/gi, " "),
             author: videoDetails.author.replace(/\+/gi, " "),
-            thumbnailUrl: AudioExtractor.getBiggerThumbnailUrl(videoDetails.thumbnail.thumbnails)
+            thumbnailUrl: videoDetails.thumbnail.thumbnails.reduce(
+                (prev, current) => (prev.height > current.height) ? prev : current
+            ).url
         };
     }
 
@@ -42,11 +44,6 @@ const AudioExtractor = {
             }
         }
         return streamsObject;
-    }
-
-    , getBiggerThumbnailUrl: (thumbnails) => {
-        let thumbnail = Math.max.apply(Math, thumbnails.map(thumbnail => thumbnail.height));
-        return thumbnail.url;
     }
 };
 
