@@ -8,11 +8,32 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="white"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.0.2/dist/amplitude.js"></script>
 </head>
-<body class="fullscreen">
-<div class="container">
-    <h1 class="title">Share me a youtube video</h1>
-    <audio id="youtube" autoplay="autoplay" controls="controls" preload="auto"></audio>
+<body>
+<div id="single-song-player">
+    <img data-amplitude-song-info="cover_art_url"/>
+    <div class="bottom-container">
+        <progress class="amplitude-song-played-progress" id="song-played-progress"></progress>
+
+        <div class="time-container">
+          <span class="current-time">
+            <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
+          </span>
+            <span class="duration">
+            <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+          </span>
+        </div>
+
+        <div class="control-container">
+            <div class="amplitude-play-pause" id="play-pause"></div>
+            <div class="meta-container">
+                <span data-amplitude-song-info="name" class="song-name"></span>
+                <span data-amplitude-song-info="artist"></span>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="module" src="app.js"></script>
 </body>

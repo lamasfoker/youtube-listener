@@ -7,14 +7,30 @@ import AudioExtractor from "./service/AudioExtractor.js";
 document.addEventListener("DOMContentLoaded", async () => {
     CompatibilityChecker.check();
     await navigator.serviceWorker.register("./ServiceWorker.js");
-    const audioTag = document.querySelector("#youtube");
-    const title = document.querySelector(".title");
+    const progressBar = document.querySelector("#song-played-progress");
 
     let body = await YouTubeRequest.getBody();
     let audio = AudioExtractor.extract(body);
 
-    audioTag.src = audio.streams["128kbps"];
-    title.innerHTML = audio.title;
+    Amplitude.init({
+        "bindings": {
+            37: 'prev',
+            39: 'next',
+            32: 'play_pause'
+        },
+        "songs": [
+            {
+                "name": audio.title,
+                "artist": audio.author,
+                "url": audio.streams["128kbps"],
+                "cover_art_url": audio.thumbnailUrl
+            }
+        ]
+    });
 
-    document.body.addEventListener("touchend", () => audioTag.play(), {once: true});
+    progressBar.addEventListener('click', function (e) {
+        let offset = this.getBoundingClientRect(),
+            x = e.x - offset.left;
+        Amplitude.setSongPlayedPercentage((parseFloat(x) / parseFloat(this.offsetWidth)) * 100);
+    });
 });
