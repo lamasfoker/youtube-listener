@@ -17,7 +17,7 @@
   "start_url": "/youtubelistener/index.html",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
+  "theme_color": "#313252",
   "share_target": {
     "action": "/youtubelistener/index.html",
     "method": "GET",
