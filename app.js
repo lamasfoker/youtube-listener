@@ -8,9 +8,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     CompatibilityChecker.check();
     await navigator.serviceWorker.register("./ServiceWorker.js");
     const progressBar = document.querySelector("#song-played-progress");
+    let audio;
 
-    let body = await YouTubeRequest.getBody();
-    let audio = AudioExtractor.extract(body);
+    try {
+        let body = await YouTubeRequest.getBody();
+        audio = AudioExtractor.extract(body);
+    } catch (e) {
+        audio = {
+            "title": "Share me a YouTube video",
+            "author": "Remember: I can't reproduce music video and other one with copyright",
+            "streams": {
+                "128kbps": "assets/sounds/failed.mp4"
+            },
+            "thumbnailUrl": "assets/images/404.jpeg"
+        }
+    }
 
     Amplitude.init({
         "bindings": {
@@ -30,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     progressBar.addEventListener('click', function (e) {
         let offset = this.getBoundingClientRect(),
-            x = e.x - offset.left;
-        Amplitude.setSongPlayedPercentage((parseFloat(x) / parseFloat(this.offsetWidth)) * 100);
+            cursor = e.x - offset.left;
+        Amplitude.setSongPlayedPercentage((parseFloat(cursor) / parseFloat(this.offsetWidth)) * 100);
     });
 });

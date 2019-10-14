@@ -7,7 +7,11 @@ const cacheName = "youtubelistener",
         "/youtubelistener/service/CompatibilityChecker.js",
         "/youtubelistener/service/StringParser.js",
         "/youtubelistener/service/YouTubeRequest.js",
-        "/youtubelistener/service/AudioExtractor.js"
+        "/youtubelistener/service/AudioExtractor.js",
+        "/youtubelistener/assets/images/pause.svg",
+        "/youtubelistener/assets/images/play.svg",
+        "/youtubelistener/assets/images/404.jpeg",
+        "/youtubelistener/assets/sounds/failed.mp4"
     ];
 
 /* Start the service worker and cache all of the app"s content */

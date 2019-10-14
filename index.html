@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>YouTubeListener</title>
+    <title>YouTube Listener</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -11,8 +11,11 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.0.2/dist/amplitude.js"></script>
 </head>
-<body>
+<body class="fullscreen">
 <div id="single-song-player">
+    <div class="header">
+        <span>YouTube Listener</span>
+    </div>
     <img data-amplitude-song-info="cover_art_url"/>
     <div class="bottom-container">
         <progress class="amplitude-song-played-progress" id="song-played-progress"></progress>
@@ -27,11 +30,11 @@
         </div>
 
         <div class="control-container">
-            <div class="amplitude-play-pause" id="play-pause"></div>
             <div class="meta-container">
                 <span data-amplitude-song-info="name" class="song-name"></span>
                 <span data-amplitude-song-info="artist"></span>
             </div>
+            <div class="amplitude-play-pause" id="play-pause"></div>
         </div>
     </div>
 </div>
