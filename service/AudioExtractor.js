@@ -29,18 +29,14 @@ const AudioExtractor = {
             streamObject = StringParser.parse(stream);
             switch (streamObject.itag) {
                 case "139":
-                    quality = "48kbps";
+                    streamsObject["48kbps"] = streamObject.url;
                     break;
                 case "140":
-                    quality = "128kbps";
+                    streamsObject["128kbps"] = streamObject.url;
                     break;
                 case "141":
-                    quality = "256kbps";
+                    streamsObject["256kbps"] = streamObject.url;
                     break;
-            }
-            if (quality) {
-                streamsObject[quality] = streamObject.url;
-                quality = false;
             }
         }
         return streamsObject;

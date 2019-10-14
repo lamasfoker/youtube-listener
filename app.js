@@ -3,12 +3,19 @@
 import CompatibilityChecker from "./service/CompatibilityChecker.js";
 import YouTubeRequest from "./service/YouTubeRequest.js";
 import AudioExtractor from "./service/AudioExtractor.js";
+import StreamQuality from "./service/StreamQuality.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     CompatibilityChecker.check();
     await navigator.serviceWorker.register("./ServiceWorker.js");
     const progressBar = document.querySelector("#song-played-progress");
+    const qualityToggle = document.querySelector("#toggle");
     let audio;
+
+    if (StreamQuality.getStreamQuality() === StreamQuality.high) {
+        qualityToggle.checked = true;
+    }
+    qualityToggle.onclick = StreamQuality.changeStreamQuality;
 
     try {
         let body = await YouTubeRequest.getBody();
@@ -34,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             {
                 "name": audio.title,
                 "artist": audio.author,
-                "url": audio.streams["128kbps"],
+                "url": StreamQuality.getStreamUrl(audio.streams),
                 "cover_art_url": audio.thumbnailUrl
             }
         ]
