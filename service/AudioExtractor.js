@@ -18,7 +18,7 @@ const AudioExtractor = {
 
     , getStreams: (data) => {
         if (!data.hasOwnProperty("url_encoded_fmt_stream_map") || !data.hasOwnProperty("adaptive_fmts")) {
-            throw "I can't play song video or other property one";
+            throw "I can't play song video or other one with Copyright";
         }
         let streams = (data.url_encoded_fmt_stream_map + "," + data.adaptive_fmts).split(","),
             stream,

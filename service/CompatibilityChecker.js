@@ -1,13 +1,19 @@
 "use strict";
 
 const CompatibilityChecker = {
-    check: () => {
-        if (!('serviceWorker' in navigator)) {
-            throw 'Service workers are not supported by this browser';
+    checkServiceWorker: () => {
+        if (!("serviceWorker" in navigator)) {
+            throw "Service workers are not supported by this browser";
+        }
+    }
+
+    , checkStandaloneMode: () => {
+        if (!(navigator.maxTouchPoints || "ontouchstart" in document.documentElement)) {
+            throw "I can run only on Android";
         }
 
-        if (!(navigator.maxTouchPoints || "ontouchstart" in document.documentElement)) {
-            throw 'This is not a Smartphone';
+        if (!window.matchMedia("(display-mode: standalone)").matches) {
+            throw "You have to add me to the Homescreen";
         }
     }
 };

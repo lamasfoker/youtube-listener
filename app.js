@@ -6,7 +6,11 @@ import AudioExtractor from "./service/AudioExtractor.js";
 import StreamQuality from "./service/StreamQuality.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    CompatibilityChecker.check();
+    try {
+        CompatibilityChecker.checkServiceWorker();
+    } catch (e) {
+        return alert(e);
+    }
     await navigator.serviceWorker.register("./ServiceWorker.js");
     const progressBar = document.querySelector("#song-played-progress");
     const qualityToggle = document.querySelector("#toggle");
@@ -18,12 +22,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     qualityToggle.onclick = StreamQuality.changeStreamQuality;
 
     try {
+        CompatibilityChecker.checkStandaloneMode();
         let body = await YouTubeRequest.getBody();
         audio = AudioExtractor.extract(body);
     } catch (e) {
         audio = {
-            "title": "Share me a YouTube video",
-            "author": "Remember: I can't reproduce music video and other one with copyright",
+            "title": e,
+            "author": "Author of the App: LamasFoker",
             "streams": {
                 "128kbps": "assets/sounds/failed.mp4"
             },
@@ -33,9 +38,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     Amplitude.init({
         "bindings": {
-            37: 'prev',
-            39: 'next',
-            32: 'play_pause'
+            37: "prev",
+            39: "next",
+            32: "play_pause"
         },
         "songs": [
             {
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ]
     });
 
-    progressBar.addEventListener('click', function (e) {
+    progressBar.addEventListener("click", function (e) {
         let offset = this.getBoundingClientRect(),
             cursor = e.x - offset.left;
         Amplitude.setSongPlayedPercentage((parseFloat(cursor) / parseFloat(this.offsetWidth)) * 100);

@@ -12,7 +12,7 @@ const StreamQuality = {
                 return streams[quality];
             }
         }
-        throw 'None stream url passed';
+        throw "I can't find the audio of this video";
     }
 
     , high: "high"
