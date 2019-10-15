@@ -6,6 +6,8 @@ import AudioExtractor from "./service/AudioExtractor.js";
 import StreamQuality from "./service/StreamQuality.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const screen = document.querySelector("html");
+    screen.style.visibility = "hidden";
     try {
         CompatibilityChecker.checkServiceWorker();
     } catch (e) {
@@ -57,4 +59,5 @@ document.addEventListener("DOMContentLoaded", async () => {
             cursor = e.x - offset.left;
         Amplitude.setSongPlayedPercentage((parseFloat(cursor) / parseFloat(this.offsetWidth)) * 100);
     });
+    screen.style.visibility = "visible";
 });
