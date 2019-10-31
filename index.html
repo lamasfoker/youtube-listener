@@ -9,37 +9,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="white"/>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@5.0.2/dist/amplitude.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js"></script>
 </head>
 <body class="fullscreen">
 <div id="single-song-player">
     <div class="header">
         <span>YouTube Listener</span>
     </div>
-    <img data-amplitude-song-info="cover_art_url"/>
+    <img class="thumbnail" alt="youtube video thumbnail"/>
     <div class="bottom-container">
-        <progress class="amplitude-song-played-progress" id="song-played-progress"></progress>
+        <progress class="song-played-progress"></progress>
 
         <div class="time-container">
-          <span class="current-time">
-            <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
-          </span>
-            <span class="duration">
-            <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
-          </span>
+            <span class="current-time">00:00</span>
+          <span class="duration">00:00</span>
         </div>
 
         <div class="control-container">
             <div class="meta-container">
-                <span data-amplitude-song-info="name" class="song-name"></span>
-                <span data-amplitude-song-info="artist"></span>
+                <span class="song-name"></span>
+                <span class="song-author"></span>
             </div>
-            <div class="amplitude-play-pause" id="play-pause"></div>
+            <div class="play-pause paused"></div>
         </div>
 
         <div>
             <div class="quality-switch">
-                <input type="checkbox" id="toggle" class="checkbox" />
+                <input type="checkbox" id="toggle" class="checkbox"/>
                 <label for="toggle" class="switch"></label>
             </div>
             <span class="label">High quality Audio</span>

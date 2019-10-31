@@ -20,17 +20,17 @@ div.control-container {
     padding-bottom: 10px;
 }
 
-div.control-container div.amplitude-play-pause {
+div.control-container div.play-pause {
     cursor: pointer;
     margin: auto;
 }
 
-div.control-container div.amplitude-play-pause.amplitude-paused {
+div.control-container div.play-pause.paused {
     background: url("../images/play.svg");
     background-size: cover;
 }
 
-div.control-container div.amplitude-play-pause.amplitude-playing {
+div.control-container div.play-pause.playing {
     background: url("../images/pause.svg");
     background-size: cover;
 }
@@ -40,14 +40,14 @@ div.control-container div.meta-container {
     margin: 10px 10px 45px 10px;
 }
 
-div.control-container div.meta-container span[data-amplitude-song-info="name"] {
+div.control-container div.meta-container span.song-name {
     font-family: "Open Sans", sans-serif;
     font-size: 18px;
     color: #fff;
     display: block;
 }
 
-div.control-container div.meta-container span[data-amplitude-song-info="artist"] {
+div.control-container div.meta-container span.song-author {
     font-family: "Open Sans", sans-serif;
     font-weight: 100;
     font-size: 14px;
@@ -56,7 +56,7 @@ div.control-container div.meta-container span[data-amplitude-song-info="artist"]
 }
 
 @media screen and (max-width: 39.9375em) {
-    div.control-container div.amplitude-play-pause {
+    div.control-container div.play-pause {
         width: 85px;
         height: 85px;
     }
@@ -81,7 +81,7 @@ div.time-container span.duration {
     margin-right: 5px;
 }
 
-progress.amplitude-song-played-progress {
+progress.song-played-progress {
     background-color: #313252;
     -webkit-appearance: none;
     width: 100%;
@@ -91,7 +91,7 @@ progress.amplitude-song-played-progress {
     border: none;
 }
 
-progress.amplitude-song-played-progress:not([value]) {
+progress.song-played-progress:not([value]) {
     background-color: #313252;
 }
 
@@ -107,7 +107,7 @@ div#single-song-player {
     width: 100%;
 }
 
-div#single-song-player img[data-amplitude-song-info="cover_art_url"] {
+div#single-song-player img.thumbnail {
     width: 100%;
 }
 
