@@ -8,7 +8,7 @@ const TimeFormatter = {
         let seconds = duration - hours * 3600 - minutes * 60;
         let formatted = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
         if (hours > 0) {
-            formatted = String(hours).padStart(2, "0") + ":" + duration;
+            formatted = String(hours).padStart(2, "0") + ":" + formatted;
         }
         return formatted;
     }
