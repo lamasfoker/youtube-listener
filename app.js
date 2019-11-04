@@ -28,8 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     const updateProgressBar = () => {
         let seek = sound.seek();
-        currentTime.innerHTML = TimeFormatter.format(seek);
-        progressBar.value = seek / sound.duration();
+        if (isNaN(seek)) {
+            progressBar.removeAttribute("value");
+            currentTime.innerHTML = 'Loading...';
+        } else {
+            currentTime.innerHTML = TimeFormatter.format(seek);
+            progressBar.value = seek / sound.duration();
+        }
     };
     let audio;
 
@@ -59,7 +64,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sound = new Howl({
         src: StreamQuality.getStreamUrl(audio.streams),
         html5: true,
-        preload: true,
         onload: () => {
             document.querySelector(".duration").innerHTML = TimeFormatter.format(sound.duration());
             setInterval(updateProgressBar, 100);
