@@ -17,8 +17,9 @@ const AudioExtractor = {
     }
 
     , getStreams: (data) => {
+        //YouTube has deprecated get_video_info to get stream url
         if (!data.hasOwnProperty("url_encoded_fmt_stream_map") || !data.hasOwnProperty("adaptive_fmts")) {
-            throw "I can't play song video or other one with Copyright";
+            return  {"128kbps": "assets/sounds/failed.mp4"};
         }
         let streams = (data.url_encoded_fmt_stream_map + "," + data.adaptive_fmts).split(","),
             stream,
