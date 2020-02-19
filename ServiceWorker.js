@@ -1,18 +1,18 @@
-const cacheName = "youtubelistener",
+const cacheName = "youtube-listener",
     filesToCache = [
-        "/youtubelistener/",
-        "/youtubelistener/index.html",
-        "/youtubelistener/assets/css/style.css",
-        "/youtubelistener/app.js",
-        "/youtubelistener/service/CompatibilityChecker.js",
-        "/youtubelistener/service/StringParser.js",
-        "/youtubelistener/service/YouTubeRequest.js",
-        "/youtubelistener/service/AudioExtractor.js",
-        "/youtubelistener/service/StreamQuality.js",
-        "/youtubelistener/assets/images/pause.svg",
-        "/youtubelistener/assets/images/play.svg",
-        "/youtubelistener/assets/images/404.jpeg",
-        "/youtubelistener/assets/sounds/failed.mp4"
+        "/youtube-listener/",
+        "/youtube-listener/index.html",
+        "/youtube-listener/assets/css/style.css",
+        "/youtube-listener/app.js",
+        "/youtube-listener/service/CompatibilityChecker.js",
+        "/youtube-listener/service/StringParser.js",
+        "/youtube-listener/service/YouTubeRequest.js",
+        "/youtube-listener/service/AudioExtractor.js",
+        "/youtube-listener/service/StreamQuality.js",
+        "/youtube-listener/assets/images/pause.svg",
+        "/youtube-listener/assets/images/play.svg",
+        "/youtube-listener/assets/images/404.jpeg",
+        "/youtube-listener/assets/sounds/failed.mp4"
     ];
 
 self.addEventListener("install", function (e) {

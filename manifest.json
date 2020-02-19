@@ -14,12 +14,12 @@
     }
   ],
   "lang": "en-US",
-  "start_url": "/youtubelistener/index.html",
+  "start_url": "/youtube-listener/index.html",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#313252",
   "share_target": {
-    "action": "/youtubelistener/index.html",
+    "action": "/youtube-listener/index.html",
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
